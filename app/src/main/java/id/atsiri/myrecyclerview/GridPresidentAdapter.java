@@ -32,7 +32,7 @@ public class GridPresidentAdapter extends RecyclerView.Adapter<GridPresidentAdap
 
     @NonNull
     @Override
-    public GridViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public GridViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid_president, parent, false);
         return new GridViewHolder(view);
     }
@@ -43,7 +43,6 @@ public class GridPresidentAdapter extends RecyclerView.Adapter<GridPresidentAdap
                 .load(getListPresident().get(position).getPhoto())
                 .apply(new RequestOptions().override(350, 550))
                 .into(holder.imgPhoto);
-
     }
 
     @Override
@@ -51,7 +50,7 @@ public class GridPresidentAdapter extends RecyclerView.Adapter<GridPresidentAdap
         return getListPresident().size();
     }
 
-    public class GridViewHolder extends RecyclerView.ViewHolder {
+    class GridViewHolder extends RecyclerView.ViewHolder {
         ImageView imgPhoto;
 
         GridViewHolder(View itemView) {

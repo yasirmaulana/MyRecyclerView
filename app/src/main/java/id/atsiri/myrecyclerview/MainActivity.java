@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rvCategory;
     private ArrayList<President> list = new ArrayList<>();
+    private String title = "Mode List";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +44,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_list:
+                setActionBarTitle("Mode List");
                 showRecyclerList();
                 break;
 
             case R.id.action_grid:
+                setActionBarTitle("Mode Grid");
                 showRecyclerGrid();
                 break;
 
             case R.id.action_cardview:
+                setActionBarTitle("Mode CardView");
+                showRecyclerCardView();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -62,4 +67,16 @@ public class MainActivity extends AppCompatActivity {
         gridPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(gridPresidentAdapter);
     }
+
+    private void showRecyclerCardView(){
+        rvCategory.setLayoutManager(new LinearLayoutManager(this));
+        CardViewPresidentAdapter cardViewPresidentAdapter = new CardViewPresidentAdapter(this);
+        cardViewPresidentAdapter.setListPresident(list);
+        rvCategory.setAdapter(cardViewPresidentAdapter);
+    }
+
+    private void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
+    }
+
 }
